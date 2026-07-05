@@ -1,0 +1,26 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "numReplicas": 1,
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  },
+  "services": [
+    {
+      "name": "backend",
+      "buildCommand": "pip install -r backend/requirements.txt",
+      "startCommand": "gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app",
+      "healthcheckPath": "/health",
+      "rootDirectory": "backend"
+    },
+    {
+      "name": "frontend",
+      "buildCommand": "npm run build",
+      "startCommand": "npx serve frontend/dist",
+      "rootDirectory": "frontend"
+    }
+  ]
+}

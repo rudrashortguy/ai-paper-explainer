@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: ai-paper-explainer-backend
+    env: python
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app
+    workingDir: backend
+    envVars:
+      - key: OLLAMA_BASE_URL
+        sync: false
+      - key: MAX_CHUNK_SIZE
+        value: "2000"
+      - key: CHUNK_OVERLAP
+        value: "200"
+
+  - type: web
+    name: ai-paper-explainer-frontend
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./frontend/dist
+    workingDir: frontend
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://ai-paper-explainer-backend.onrender.com
