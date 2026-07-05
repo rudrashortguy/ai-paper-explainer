@@ -1,0 +1,12 @@
+fastapi[standard]
+pypdfium2
+langchain
+langchain-text-splitters
+httpx
+python-multipart
+pydantic-settings
+aiocache
+pytest
+pytest-asyncio
+respx
+pytest-cov

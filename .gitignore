@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+temp_pdfs/
+*.log
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
+
+# Secrets & OS
+*.pem
+*.key
+*.p12
+.DS_Store
+
+# Docker
+*.pid
